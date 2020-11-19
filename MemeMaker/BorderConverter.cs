@@ -10,11 +10,11 @@ namespace MemeMaker
         {
             if ((bool)value == true)
             {
-                return "Visible";
+                return "2";
             }
             else
             {
-                return "Hidden";
+                return "0";
             }
         }
 

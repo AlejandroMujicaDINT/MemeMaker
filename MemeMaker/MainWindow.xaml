@@ -20,6 +20,10 @@
                     Value="Impact" />
             <Setter Property="FontSize"
                     Value="36" />
+            <Setter Property="TextWrapping"
+                    Value="Wrap" />
+            <Setter Property="TextAlignment"
+                    Value="Center" />
             <Setter Property="Foreground"
                     Value="White" />
             <Setter Property="Effect">
@@ -49,61 +53,60 @@
         <local:BorderConverter x:Key="conversor"></local:BorderConverter>
     </Window.Resources>
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-        <StackPanel>
-            <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="85"></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <TextBlock>Texto superior</TextBlock>
-        <TextBox x:Name="textoSuperiorTextBlock" Grid.Column="1">Texto superior</TextBox>
-        <TextBlock Grid.Row="1">Texto inferior</TextBlock>
-        <TextBox x:Name="textoInferiorTextBlock" Grid.Row="1" Grid.Column="1">Texto inferior</TextBox>
-        <TextBlock Grid.Row="2">Alto</TextBlock>
-            <Slider x:Name="altoSlider"
-                    Grid.Row="2"
-                    Grid.Column="1"/>
-            <TextBlock Grid.Row="3">Ancho</TextBlock>
-            <Slider x:Name="anchoSlider"
-                    Grid.Row="3"
-                    Grid.Column="1" />
-            <TextBlock Grid.Row="4">Imagen</TextBlock>
-        <TextBox x:Name="imageTextBox"
-                 Grid.Row="4"
-                 Grid.Column="1"></TextBox>
-        <TextBlock Grid.Row="5">Borde</TextBlock>
-        <CheckBox Grid.Row="5"
-                  Grid.Column="1"
-                  VerticalAlignment="Center"
-                  x:Name="borderCheckBox"
-                  IsChecked="True"></CheckBox>
-        </Grid>
-            
-                <Grid Width="{Binding ElementName=anchoSlider,Path=Value}"
-                  Height="{Binding ElementName=altoSlider,Path=Value}"
-                  Background="Pink">
-                <Border BorderBrush="Black"
-                        BorderThickness="2"
-                        Visibility="{Binding ElementName=borderCheckBox,Path=IsChecked,Converter={StaticResource conversor}}">
-                    <Image Source="{Binding ElementName=imageTextBox,Path=Text}">
-                    </Image>
-                </Border>
-                <TextBlock Style="{StaticResource memeTextBlock}"
+        <DockPanel>
+            <Grid DockPanel.Dock="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="85"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock>Texto superior</TextBlock>
+                <TextBox x:Name="textoSuperiorTextBlock"
+                         Grid.Column="1">Texto superior</TextBox>
+                <TextBlock Grid.Row="1">Texto inferior</TextBlock>
+                <TextBox x:Name="textoInferiorTextBlock"
+                         Grid.Row="1"
+                         Grid.Column="1">Texto inferior</TextBox>
+                <TextBlock Grid.Row="2">Alto</TextBlock>
+                <Slider x:Name="altoSlider"
+                        Grid.Row="2"
+                        Grid.Column="1" />
+                <TextBlock Grid.Row="3">Ancho</TextBlock>
+                <Slider x:Name="anchoSlider"
+                        Grid.Row="3"
+                        Grid.Column="1" />
+                <TextBlock Grid.Row="4">Imagen</TextBlock>
+                <TextBox x:Name="imageTextBox"
+                         Grid.Row="4"
+                         Grid.Column="1"></TextBox>
+                <TextBlock Grid.Row="5">Borde</TextBlock>
+                <CheckBox Grid.Row="5"
+                          Grid.Column="1"
+                          VerticalAlignment="Center"
+                          x:Name="borderCheckBox"
+                          IsChecked="True"></CheckBox>
+            </Grid>
+            <Border BorderBrush="Black"
+                    Width="{Binding ElementName=anchoSlider,Path=Value}"
+                    Height="{Binding ElementName=altoSlider,Path=Value}"
+                    BorderThickness="{Binding ElementName=borderCheckBox,Path=IsChecked,Converter={StaticResource conversor}}">
+                <Grid Background="Pink">
+                    <Image Source="{Binding ElementName=imageTextBox,Path=Text}" Stretch="Fill"/>
+                    <TextBlock Style="{StaticResource memeTextBlock}"
                            VerticalAlignment="Top"
                            Text="{Binding ElementName=textoSuperiorTextBlock,Path=Text}"></TextBlock>
-                <TextBlock Style="{StaticResource memeTextBlock}"
+                    <TextBlock Style="{StaticResource memeTextBlock}"
                            VerticalAlignment="Bottom"
                            Text="{Binding ElementName=textoInferiorTextBlock,Path=Text}"></TextBlock>
                 </Grid>
-           
-        </StackPanel>
+            </Border>
+        </DockPanel>
     </ScrollViewer>
 </Window>
