@@ -94,6 +94,7 @@
                           IsChecked="True"></CheckBox>
             </Grid>
             <Border BorderBrush="Black"
+                    Margin="0,0,0,10"
                     Width="{Binding ElementName=anchoSlider,Path=Value}"
                     Height="{Binding ElementName=altoSlider,Path=Value}"
                     BorderThickness="{Binding ElementName=borderCheckBox,Path=IsChecked,Converter={StaticResource conversor}}">
